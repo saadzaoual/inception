@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Read credentials from Docker secrets instead of environment variables
+MYSQL_PASSWORD=$(cat /run/secrets/db_password)
+WP_ADMIN_PASSWORD=$(cat /run/secrets/wp_admin_password)
+WP_NORMAL_PASSWORD=$(cat /run/secrets/wp_user_password)
+
 # Go to the directory where the website files will live
 cd /var/www/html
 
@@ -25,7 +30,7 @@ if [ ! -f "wp-config.php" ]; then
         --allow-root
 
     wp core install \
-        --url=${DOMAIN_NAME} \
+        --url=https://${DOMAIN_NAME} \
         --title="Inception 42" \
         --admin_user=${WP_ADMIN_USER} \
         --admin_password=${WP_ADMIN_PASSWORD} \
@@ -42,15 +47,9 @@ else
     echo "WordPress is already installed."
 fi
 
-# --- IDEMPOTENT REDIS SETUP ---
-# Running this outside the IF block guarantees Redis is configured every single boot,
-# even if the volume cache wasn't deleted properly!
-
-# ------------------------------
-
 # Ensure correct permissions
 chown -R www-data:www-data /var/www/html
 
 # Start PHP-FPM in the foreground
 echo "Starting PHP-FPM..."
-exec php-fpm7.4 -F
+exec php-fpm8.2 -F

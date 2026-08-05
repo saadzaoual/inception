@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/szaoual/data/**)",
+      "Read(//home/szaoual/data/wordpress/**)",
+      "Read(//home/szaoual/data/wordpress/wp-includes/**)"
+    ]
+  }
+}
