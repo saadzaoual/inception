@@ -30,7 +30,22 @@ services:
       - db_password
       - wp_admin_password
       - wp_user_password
-
+  nginx:
+    build:
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    image: nginx
+    restart: on-failure
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+    env_file: .env
 networks:
   inception:
     driver: bridge
@@ -40,14 +55,14 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: "${HOME}/data/mariadb"
+      device: "/home/szaoual/data/mariadb"
       o: bind
   wordpress_data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: "${HOME}/data/wordpress"
+      device: "/home/szaoual/data/wordpress"
 secrets:
   db_password:
     file: ../secrets/db_password.txt
