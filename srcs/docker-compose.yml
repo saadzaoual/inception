@@ -14,6 +14,16 @@ services:
     secrets: 
       - db_password
       - db_root_password
+  redis:
+    build:
+      context: ./requirements/bonus/redis
+      dockerfile: Dockerfile
+    container_name: redis
+    image: redis:inception
+    restart: on-failure
+    networks:
+      - inception
+
   wordpress:
     build: requirements/wordpress
     container_name: wordpress
@@ -21,6 +31,7 @@ services:
     restart: always
     depends_on:
       - mariadb
+      - redis
     env_file:
       - .env
     networks:
