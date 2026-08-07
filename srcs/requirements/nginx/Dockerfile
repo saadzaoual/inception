@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update -yqq && apt-get upgrade -yqq
 RUN apt-get install -yqq --no-install-recommends nginx openssl

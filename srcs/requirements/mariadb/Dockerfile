@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update -yqq && apt-get upgrade -yqq && \
 	apt-get install -y --no-install-recommends mariadb-server && rm -rf /var/lib/apt/lists/*
