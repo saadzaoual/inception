@@ -4,7 +4,7 @@ services:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
     container_name: mariadb
-    image: mariadb
+    image: mariadb:inception
     restart: on-failure
     volumes:
       - mariadb_data:/var/lib/mysql
@@ -17,6 +17,7 @@ services:
   wordpress:
     build: requirements/wordpress
     container_name: wordpress
+    image: wordpress:inception
     restart: always
     depends_on:
       - mariadb
@@ -35,7 +36,7 @@ services:
       context: ./requirements/nginx
       dockerfile: Dockerfile
     container_name: nginx
-    image: nginx
+    image: nginx:inception
     restart: on-failure
     ports:
       - "443:443"
