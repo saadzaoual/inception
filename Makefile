@@ -3,7 +3,9 @@ NAME		= inception
 COMPOSE_FILE	= srcs/docker-compose.yml
 COMPOSE		= docker compose -f $(COMPOSE_FILE)
 
-DATA_DIR	= $(HOME)/data
+# Must match the bind-mount device paths in srcs/docker-compose.yml.
+# Hardcoded rather than $(HOME) so `sudo make` does not resolve it to /root.
+DATA_DIR	= /home/szaoual/data
 MARIADB_DIR	= $(DATA_DIR)/mariadb
 WORDPRESS_DIR	= $(DATA_DIR)/wordpress
 
