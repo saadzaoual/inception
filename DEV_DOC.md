@@ -10,10 +10,12 @@ is writable (the data volumes bind under `$HOME/data`).
    `.gitignore`): `db_root_password.txt`, `db_password.txt`,
    `wp_admin_password.txt`, `wp_user_password.txt` — one password per
    file, no trailing newline.
-3. Create `srcs/.env` (git-ignored) with the domain, database name,
-   usernames and emails — see the table under **Environment variables**
-   for the full list of keys. It holds no credentials, but it is kept out
-   of git so that no committed file can accumulate them by accident.
+3. Create `srcs/.env` (git-ignored) from the tracked template:
+   `cp srcs/.env.example srcs/.env`, then adjust the domain, database
+   name, usernames and emails — see the table under **Environment
+   variables** for the full list of keys. It holds no credentials, but it
+   is kept out of git so that no committed file can accumulate them by
+   accident.
 4. `make` builds every image and starts the stack (see **Commands**).
 
 ## Architecture

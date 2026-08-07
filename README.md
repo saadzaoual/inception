@@ -18,6 +18,20 @@ the containers' lifecycle.
 and `<DOMAIN_NAME>` (see `srcs/.env`) resolving to `127.0.0.1` (add it to
 `/etc/hosts`).
 
+**First run after cloning.** Neither the configuration file nor the
+passwords are tracked in git, so both have to be created locally:
+
+```sh
+cp srcs/.env.example srcs/.env          # configuration (no passwords)
+
+mkdir -p secrets                        # one password per file
+printf '%s' 'db_root_pw' > secrets/db_root_password.txt
+printf '%s' 'db_pw'      > secrets/db_password.txt
+printf '%s' 'wp_admin_pw'> secrets/wp_admin_password.txt
+printf '%s' 'wp_user_pw' > secrets/wp_user_password.txt
+chmod 600 secrets/*.txt
+```
+
 ```sh
 make          # build every image and start the stack
 make down     # stop and remove the containers
