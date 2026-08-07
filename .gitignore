@@ -1,2 +1,4 @@
-secrets/*.txt
+secrets/
+*.env
+.env
 srcs/.env
