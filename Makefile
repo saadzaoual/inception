@@ -1,5 +1,3 @@
-NAME		= inception
-
 COMPOSE_FILE	= srcs/docker-compose.yml
 COMPOSE		= docker compose -f $(COMPOSE_FILE)
 

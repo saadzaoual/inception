@@ -25,14 +25,8 @@ The stack is three containers behind a single HTTPS entrypoint:
 Non-sensitive settings (domain, database name, usernames, emails) live in
 `srcs/.env`. That file is **git-ignored** and must be created locally
 before the first run — the repository deliberately contains no
-configuration file that could accumulate credentials. A template is
-provided, so after cloning:
-
-```sh
-cp srcs/.env.example srcs/.env
-```
-
-Then edit it if needed. The keys are:
+configuration file that could accumulate credentials. Create it after
+cloning with these keys:
 
 ```
 DOMAIN_NAME=...

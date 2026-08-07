@@ -1,4 +1,2 @@
 secrets/
 *.env
-.env
-srcs/.env

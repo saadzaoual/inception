@@ -22,7 +22,15 @@ and `<DOMAIN_NAME>` (see `srcs/.env`) resolving to `127.0.0.1` (add it to
 passwords are tracked in git, so both have to be created locally:
 
 ```sh
-cp srcs/.env.example srcs/.env          # configuration (no passwords)
+cat > srcs/.env <<'EOF'                 # configuration (no passwords)
+MYSQL_DATABASE=wordpress
+MYSQL_USER=szaoual
+DOMAIN_NAME=szaoual.42.fr
+WP_ADMIN_USER=supervisor
+WP_ADMIN_EMAIL=supervisor@szaoual.42.fr
+WP_NORMAL_USER=writer
+WP_NORMAL_EMAIL=writer@szaoual.42.fr
+EOF
 
 mkdir -p secrets                        # one password per file
 printf '%s' 'db_root_pw' > secrets/db_root_password.txt
